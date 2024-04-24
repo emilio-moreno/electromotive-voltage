@@ -10,11 +10,8 @@ const float bound_voltage = 3;
 const int pin = A0; // measuring pin
 float V; // measured voltage
 
-const int PWM_pin = 3;
 void setup() {
-    pinMode(PWM_pin, OUTPUT);
-  	analogWrite(PWM_pin, 100);
-  	Serial.begin(9600);
+    Serial.begin(9600);
     pinMode(pin, INPUT);
 }
 
@@ -36,6 +33,7 @@ void loop() {
   	int n = 0;
     while (n <= num_avg) {
       V = float(analogRead(pin)) * 5 / 1023; // measured voltage
+      Serial.println(V);
 
       // Voltage crosses bound.
       if ((above != true) && (V > bound_voltage)) {
